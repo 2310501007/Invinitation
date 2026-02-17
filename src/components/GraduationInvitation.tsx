@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 interface GraduationInvitationProps {
@@ -12,6 +12,28 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showCard, setShowCard] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  const handleOpenWithMusic = () => {
+    setIsOpen(true);
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
 
   const copyAccountNumber = () => {
     navigator.clipboard.writeText("1697519435");
@@ -229,7 +251,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
 
                   {/* Main button */}
                   <motion.button
-                    onClick={() => setIsOpen(true)}
+                    onClick={handleOpenWithMusic}
                     className="relative px-12 py-5 bg-[#2c1810] hover:bg-[#1a0f08] text-[#f5f0e8] font-serif text-base uppercase tracking-widest border-4 border-double border-[#2c1810] transition-all duration-300 shadow-2xl"
                     whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(44, 24, 16, 0.4)" }}
                     whileTap={{ scale: 0.95 }}
@@ -736,7 +758,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
               </motion.p>
 
               <motion.button
-                onClick={() => setIsOpen(true)}
+                onClick={handleOpenWithMusic}
                 className="px-10 py-4 bg-[#2c1810] hover:bg-[#1a0f08] text-[#f5f0e8] font-serif text-sm uppercase tracking-wider border-4 border-double border-[#2c1810] transition-all shadow-lg"
                 whileHover={{ scale: 1.08, boxShadow: "0 10px 30px rgba(44, 24, 16, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
@@ -1089,6 +1111,83 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
         </div>
       </div>
     </div>
+
+    {/* Audio Element */}
+    <audio ref={audioRef} loop>
+      <source src="/music.mp3" type="audio/mpeg" />
+    </audio>
+
+    {/* Vinyl Music Player - Fixed Bottom Right */}
+    <motion.div
+      className="fixed bottom-6 right-6 z-50 cursor-pointer"
+      onClick={toggleMusic}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+    >
+      <motion.div
+        className="relative w-16 h-16 md:w-20 md:h-20"
+        animate={{ rotate: isPlaying ? 360 : 0 }}
+        transition={{
+          rotate: {
+            duration: 2,
+            repeat: isPlaying ? Infinity : 0,
+            ease: "linear"
+          }
+        }}
+      >
+        {/* Vinyl Disc */}
+        <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-2xl border-4 border-gray-700 relative overflow-hidden">
+          {/* Vinyl grooves effect */}
+          <div className="absolute inset-0">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full border border-gray-600/30"
+                style={{
+                  width: `${85 - i * 10}%`,
+                  height: `${85 - i * 10}%`,
+                  top: `${7.5 + i * 5}%`,
+                  left: `${7.5 + i * 5}%`,
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Center label */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-red-600 to-red-800 border-2 border-red-900 shadow-lg">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-black"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Play/Pause indicator */}
+        <div className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full bg-white shadow-lg flex items-center justify-center">
+          {isPlaying ? (
+            <svg className="w-3 h-3 md:w-4 md:h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+          ) : (
+            <svg className="w-3 h-3 md:w-4 md:h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          )}
+        </div>
+      </motion.div>
+
+      {/* Tooltip */}
+      <motion.div
+        className="absolute bottom-full right-0 mb-2 bg-gray-900 text-white text-xs px-3 py-1 rounded shadow-lg whitespace-nowrap"
+        initial={{ opacity: 0, y: 10 }}
+        whileHover={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        {isPlaying ? "Klik untuk matikan musik" : "Klik untuk putar musik"}
+      </motion.div>
+    </motion.div>
     </>
   );
 }
