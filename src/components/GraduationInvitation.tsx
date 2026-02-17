@@ -970,7 +970,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                 </div>
               </motion.div>
 
-              {/* Recipient */}
+              {/* Recipient
               <motion.div 
                 className="mb-4 border-2 border-[#2c1810] p-3 bg-white text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -981,7 +981,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                 <p className="font-bold font-serif text-[#2c1810]">
                   {recipient.replace(/\+/g, " ")}
                 </p>
-              </motion.div>
+              </motion.div> */}
 
               {/* Graduation Gift Section - Mobile */}
               <motion.div 
