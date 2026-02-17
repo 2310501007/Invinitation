@@ -8,10 +8,17 @@ interface GraduationInvitationProps {
   recipient: string;
 }
 
-// Helper function for asset paths in production
+// Base path for GitHub Pages
+const BASE_PATH = '/Invinitation';
+
+// Helper function for asset paths
 const getAssetPath = (path: string) => {
-  const basePath = process.env.NODE_ENV === 'production' ? '/Invinitation' : '';
-  return `${basePath}${path}`;
+  // For production (GitHub Pages), add base path
+  // For development, use path as-is
+  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+    return `${BASE_PATH}${path}`;
+  }
+  return path;
 };
 
 export default function GraduationInvitation({ recipient }: GraduationInvitationProps) {
@@ -350,7 +357,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                   {/* Sepia filter effect for vintage newspaper look */}
                   <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                   <Image
-                    src={getAssetPath("/graduation-photo.jpg")}
+                    src="/graduation-photo.jpg"
                     alt="Foto Wisuda"
                     fill
                     className="object-cover grayscale-[30%] sepia-[20%]"
@@ -428,7 +435,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-40 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-1.jpg")}
+                        src="/gallery-1.jpg"
                         alt="Foto Wisuda 1"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -444,7 +451,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-40 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-2.jpg")}
+                        src="/gallery-2.jpg"
                         alt="Foto Wisuda 2"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -460,7 +467,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-40 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-3.jpg")}
+                        src="/gallery-3.jpg"
                         alt="Foto Wisuda 3"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -476,7 +483,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-40 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-4.jpg")}
+                        src="/gallery-4.jpg"
                         alt="Foto Wisuda 4"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -838,7 +845,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                   {/* Sepia filter for vintage look */}
                   <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                   <Image
-                    src={getAssetPath("/graduation-photo.jpg")}
+                    src="/graduation-photo.jpg"
                     alt="Foto Wisuda"
                     fill
                     className="object-cover grayscale-[30%] sepia-[20%]"
@@ -899,7 +906,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-28 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-1.jpg")}
+                        src="/gallery-1.jpg"
                         alt="Foto 1"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -917,7 +924,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-28 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-2.jpg")}
+                        src="/gallery-2.jpg"
                         alt="Foto 2"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -935,7 +942,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-28 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-3.jpg")}
+                        src="/gallery-3.jpg"
                         alt="Foto 3"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
@@ -953,7 +960,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     <div className="w-full h-28 relative overflow-hidden bg-gradient-to-br from-[#d4c8b8] to-[#a89880]">
                       <div className="absolute inset-0 z-10 mix-blend-multiply bg-[#e8dcc8] opacity-30"></div>
                       <Image
-                        src={getAssetPath("/gallery-4.jpg")}
+                        src="/gallery-4.jpg"
                         alt="Foto 4"
                         fill
                         className="object-cover grayscale-[30%] sepia-[20%]"
