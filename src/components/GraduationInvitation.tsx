@@ -264,7 +264,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     transition={{ 
                       opacity: { delay: 0.8 },
                       scale: { delay: 0.8 },
-                      y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+                      y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }
                     }}
                   >
                     <span className="text-2xl mr-3">📰</span>
