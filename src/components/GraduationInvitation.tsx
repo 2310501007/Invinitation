@@ -284,7 +284,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                       <span className="text-lg">✦</span>
                       <div className="w-16 h-px bg-[#2c1810]"></div>
                     </div>
-                    <p className="text-xs font-serif text-[#5c4a3a] italic">"Momen yang ditunggu-tunggu"</p>
+                    <p className="text-xs font-serif text-[#5c4a3a] italic">&ldquo;Momen yang ditunggu-tunggu&rdquo;</p>
                   </motion.div>
                 </motion.div>
               )}
@@ -370,7 +370,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                     color: "#2c1810",
                   }}
                 >
-                  "wisuda dulu, deploy karier nanti"
+                  &ldquo;wisuda dulu, deploy karier nanti&rdquo;
                 </p>
                 <p className="text-xs font-serif text-center text-[#5c4a3a] italic">
                   - Pepatah Mahasiswa it
@@ -852,7 +852,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
                 <p className="text-lg font-bold font-serif text-[#2c1810]">
-                  "wisuda dulu, deploy karier nanti"
+                  &ldquo;wisuda dulu, deploy karier nanti&rdquo;
                 </p>
                 <p className="text-xs font-serif text-[#5c4a3a] italic">- R.A. Kartini</p>
               </motion.div>
