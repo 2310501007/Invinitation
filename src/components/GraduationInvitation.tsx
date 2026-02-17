@@ -867,7 +867,7 @@ export default function GraduationInvitation({ recipient }: GraduationInvitation
                 <p className="text-lg font-bold font-serif text-[#2c1810]">
                   &ldquo;wisuda dulu, deploy karier nanti&rdquo;
                 </p>
-                <p className="text-xs font-serif text-[#5c4a3a] italic">- R.A. Kartini</p>
+                <p className="text-xs font-serif text-[#5c4a3a] italic">- - Pepatah Mahasiswa it</p>
               </motion.div>
 
               {/* Article Body */}
